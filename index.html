@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bảng 5x5 Tương Tác với Hình ảnh</title>
+    <style>
+        table {
+            width: 300px;
+            height: 300px;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+
+        td {
+            width: 60px;
+            height: 60px;
+            border: 1px solid black;
+            text-align: center;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .black {
+            background-color: black;
+        }
+
+        #imageSelection {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 10px;
+            border: 1px solid black;
+            z-index: 100;
+        }
+
+        #imageSelection img {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 50;
+        }
+    </style>
+</head>
+
+<body>
+    <table id="interactiveTable">
+        <!-- Tạo bảng 5x5 -->
+        <script>
+            for (let i = 0; i < 5; i++) {
+                document.write('<tr>');
+                for (let j = 0; j < 5; j++) {
+                    document.write('<td></td>');
+                }
+                document.write('</tr>');
+            }
+        </script>
+    </table>
+
+    <div id="overlay" onclick="closeImageSelection()"></div>
+
+    <div id="imageSelection">
+        <p>Chọn hình ảnh:</p>
+        <img src="common.png" alt="common" onclick="selectImage('common.png')">
+        <img src="gau.png" alt="gau" onclick="selectImage('gau.png')">
+        <img src="wes.png" alt="wes" onclick="selectImage('wes.png')">
+        <img src="Na.png" alt="Na" onclick="selectImage('Na.png')">
+        <img src="robo.png" alt="robo" onclick="selectImage('robo.png')">
+        <img src="matseo.png" alt="matseo" onclick="selectImage('matseo.png')">
+        <img src="heo.png" alt="heo" onclick="selectImage('heo.png')">
+        <img src="cho.png" alt="cho" onclick="selectImage('cho.png')">
+        <img src="achien.png" alt="achien" onclick="selectImage('achien.png')">
+        <img src="tsu.png" alt="tsu" onclick="selectImage('tsu.png')">
+        <img src="meo.png" alt="meo" onclick="selectImage('meo.png')">
+        <img src="king.png" alt="king" onclick="selectImage('king.png')">
+        <img src="ran.png" alt="ran" onclick="selectImage('ran.png')">
+        <img src="mauden.png" alt="den" onclick="selectImage('mauden.png')">
+        <img src="traitim.png" alt="love" onclick="selectImage('traitim.png')">
+        <button onclick="closeImageSelection()">Hủy</button>
+    </div>
+
+    <script>
+        let selectedCell;
+
+        const cells = document.querySelectorAll('td');
+
+        cells.forEach(cell => {
+            cell.addEventListener('click', function () {
+                selectedCell = this;
+                openImageSelection();
+            });
+        });
+
+        function openImageSelection() {
+            document.getElementById('imageSelection').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function closeImageSelection() {
+            document.getElementById('imageSelection').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        function selectImage(imageSrc) {
+            if (selectedCell) {
+                selectedCell.innerHTML = `<img src="${imageSrc}" alt="Selected Image">`;
+            }
+            closeImageSelection();
+        }
+    </script>
+</body>
+
+</html>
