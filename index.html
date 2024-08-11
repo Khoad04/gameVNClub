@@ -62,6 +62,18 @@
             background-color: rgba(0, 0, 0, 0.5);
             z-index: 50;
         }
+
+        #resetButton {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
     </style>
 </head>
 
@@ -79,21 +91,22 @@
         </script>
     </table>
 
+    <button id="resetButton" onclick="resetTable()">Reset</button>
+
     <div id="overlay" onclick="closeImageSelection()"></div>
 
     <div id="imageSelection">
-        <p>Chọn hình ảnh:</p>
-        <img src="common.png" alt="common" onclick="selectImage('common.png')">
+        <p>Select image:</p>
+        <img src="matseo.png" alt="matseo" onclick="selectImage('matseo.png')">
+        <img src="meo.png" alt="meo" onclick="selectImage('meo.png')">
         <img src="gau.png" alt="gau" onclick="selectImage('gau.png')">
         <img src="wes.png" alt="wes" onclick="selectImage('wes.png')">
         <img src="Na.png" alt="Na" onclick="selectImage('Na.png')">
-        <img src="robo.png" alt="robo" onclick="selectImage('robo.png')">
-        <img src="matseo.png" alt="matseo" onclick="selectImage('matseo.png')">
-        <img src="cho.png" alt="cho" onclick="selectImage('cho.png')">
         <img src="tsu.png" alt="tsu" onclick="selectImage('tsu.png')">
-        <img src="meo.png" alt="meo" onclick="selectImage('meo.png')">
-        <img src="king.png" alt="king" onclick="selectImage('king.png')">
+        <img src="robo.png" alt="robo" onclick="selectImage('robo.png')">
+        <img src="cho.png" alt="cho" onclick="selectImage('cho.png')">
         <img src="ran.png" alt="ran" onclick="selectImage('ran.png')">
+        <img src="king.png" alt="king" onclick="selectImage('king.png')">
         <img src="mauden.png" alt="den" onclick="selectImage('mauden.png')">
         <img src="vuongmieng.png" alt="vuongmieng" onclick="selectImage('vuongmieng.png')">
         <img src="cong1.png" alt="cong1" onclick="selectImage('cong1.png')">
@@ -101,7 +114,8 @@
         <img src="bac.png" alt="bac" onclick="selectImage('bac.png')">
         <img src="kimcuong.png" alt="kimcuong" onclick="selectImage('kimcuong.png')">
         <img src="bachkim.png" alt="bachkim" onclick="selectImage('bachkim.png')">
-        <button onclick="closeImageSelection()">Hủy</button>
+        <img src="common.png" alt="common" onclick="selectImage('common.png')">
+        <button onclick="closeImageSelection()">Cancel</button>
     </div>
 
     <script>
@@ -131,6 +145,13 @@
                 selectedCell.innerHTML = `<img src="${imageSrc}" alt="Selected Image">`;
             }
             closeImageSelection();
+        }
+
+        function resetTable() {
+            cells.forEach(cell => {
+                cell.innerHTML = ''; // Xóa nội dung trong ô
+                cell.classList.remove('black'); // Nếu có tô màu đen thì xóa
+            });
         }
     </script>
 </body>
