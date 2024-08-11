@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bảng event survivor - Clan VNClub</title>
     <style>
         table {
@@ -75,14 +74,6 @@
             font-size: 16px;
             border-radius: 5px;
         }
-
-        .matched {
-            filter: grayscale(1);
-        }
-
-        .new {
-            border: 5px solid red;
-        }
     </style>
 </head>
 
@@ -93,95 +84,42 @@
             for (let i = 0; i < 5; i++) {
                 document.write('<tr>');
                 for (let j = 0; j < 5; j++) {
-                    document.write(`<td id="${i}${j}"></td>`);
+                    document.write('<td></td>');
                 }
                 document.write('</tr>');
             }
         </script>
     </table>
 
-    <button id="resetButton"
-            onclick="resetTable()">Reset</button>
+    <button id="resetButton" onclick="resetTable()">Reset</button>
 
-    <div id="overlay"
-         onclick="closeImageSelection()"></div>
+    <div id="overlay" onclick="closeImageSelection()"></div>
 
     <div id="imageSelection">
         <p>Select image:</p>
-        <img src="matseo.png"
-             alt="matseo"
-             onclick="selectImage('matseo.png')">
-        <img src="meo.png"
-             alt="meo"
-             onclick="selectImage('meo.png')">
-        <img src="gau.png"
-             alt="gau"
-             onclick="selectImage('gau.png')">
-        <img src="wes.png"
-             alt="wes"
-             onclick="selectImage('wes.png')">
-        <img src="Na.png"
-             alt="Na"
-             onclick="selectImage('Na.png')">
-        <img src="tsu.png"
-             alt="tsu"
-             onclick="selectImage('tsu.png')">
-        <img src="robo.png"
-             alt="robo"
-             onclick="selectImage('robo.png')">
-        <img src="cho.png"
-             alt="cho"
-             onclick="selectImage('cho.png')">
-        <img src="ran.png"
-             alt="ran"
-             onclick="selectImage('ran.png')">
-        <img src="king.png"
-             alt="king"
-             onclick="selectImage('king.png')">
-        <img src="common.png"
-             alt="common"
-             onclick="selectImage('common.png')">
-        <img src="vuongmieng.png"
-             alt="vuongmieng"
-             onclick="selectImage('vuongmieng.png')">
-        <img src="cong1.png"
-             alt="cong1"
-             onclick="selectImage('cong1.png')">
-        <img src="dong.png"
-             alt="dong"
-             onclick="selectImage('dong.png')">
-        <img src="bac.png"
-             alt="bac"
-             onclick="selectImage('bac.png')">
-        <img src="kimcuong.png"
-             alt="kimcuong"
-             onclick="selectImage('kimcuong.png')">
-        <img src="bachkim.png"
-             alt="bachkim"
-             onclick="selectImage('bachkim.png')">
-        <img src="mauden.png"
-             alt="den"
-             onclick="selectImage('mauden.png')">
+        <img src="matseo.png" alt="matseo" onclick="selectImage('matseo.png')">
+        <img src="meo.png" alt="meo" onclick="selectImage('meo.png')">
+        <img src="gau.png" alt="gau" onclick="selectImage('gau.png')">
+        <img src="wes.png" alt="wes" onclick="selectImage('wes.png')">
+        <img src="Na.png" alt="Na" onclick="selectImage('Na.png')">
+        <img src="tsu.png" alt="tsu" onclick="selectImage('tsu.png')">
+        <img src="robo.png" alt="robo" onclick="selectImage('robo.png')">
+        <img src="cho.png" alt="cho" onclick="selectImage('cho.png')">
+        <img src="ran.png" alt="ran" onclick="selectImage('ran.png')">
+        <img src="king.png" alt="king" onclick="selectImage('king.png')">
+        <img src="common.png" alt="common" onclick="selectImage('common.png')">
+        <img src="vuongmieng.png" alt="vuongmieng" onclick="selectImage('vuongmieng.png')">
+        <img src="cong1.png" alt="cong1" onclick="selectImage('cong1.png')">
+        <img src="dong.png" alt="dong" onclick="selectImage('dong.png')">
+        <img src="bac.png" alt="bac" onclick="selectImage('bac.png')">
+        <img src="kimcuong.png" alt="kimcuong" onclick="selectImage('kimcuong.png')">
+        <img src="bachkim.png" alt="bachkim" onclick="selectImage('bachkim.png')">
+        <img src="mauden.png" alt="den" onclick="selectImage('mauden.png')">
         <button onclick="closeImageSelection()">Cancel</button>
     </div>
 
     <script>
         let selectedCell;
-        const cellSelections = [
-            ['', '', '', '', ''],
-            ['', '', '', '', ''],
-            ['', '', '', '', ''],
-            ['', '', '', '', ''],
-            ['', '', '', '', ''],
-        ];
-
-        const matched = [
-            [false, false, false, false, false],
-            [false, false, false, false, false],
-            [false, false, false, false, false],
-            [false, false, false, false, false],
-            [false, false, false, false, false],
-        ];
 
         const cells = document.querySelectorAll('td');
 
@@ -205,37 +143,8 @@
         function selectImage(imageSrc) {
             if (selectedCell) {
                 selectedCell.innerHTML = `<img src="${imageSrc}" alt="Selected Image">`;
-                const [i, j] = selectedCell.id;
-                cellSelections[Number(i)][Number(j)] = imageSrc;
-                console.log(cellSelections);
-                findMatches(Number(i), Number(j), imageSrc);
             }
             closeImageSelection();
-        }
-
-        function findMatches(ti, tj, target) {
-            for (let i = 0; i < 5; i++) {
-                for (let j = 0; j < 5; j++) {
-                    document.getElementById(`${i}${j}`).classList.remove('new');
-                }
-            }
-
-            for (let i = 0; i < 5; i++) {
-                for (let j = 0; j < 5; j++) {
-                    const selection = cellSelections[i][j];
-                    if (
-                        (i === ti && j === tj) ||
-                        matched[i][j] || selection !== target) {
-                        continue;
-                    }
-
-                    matched[i][j] = true;
-                    matched[ti][tj] = true;
-                    document.getElementById(`${i}${j}`).classList.add('matched', 'new');
-                    document.getElementById(`${ti}${tj}`).classList.add('matched', 'new');
-                    return;
-                }
-            }
         }
 
         function resetTable() {
@@ -243,14 +152,6 @@
                 cell.innerHTML = '';
                 cell.classList.remove('black');
             });
-
-            for (let i = 0; i < 5; i++) {
-                for (let j = 0; j < 5; j++) {
-                    cellSelections[i][j] = '';
-                    matched[i][j] = false;
-                    document.getElementById(`${i}${j}`).classList.remove('matched', 'new');
-                }
-            }
         }
     </script>
 </body>
