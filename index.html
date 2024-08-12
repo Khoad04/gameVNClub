@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bảng event survivor - Clan VNClub</title>
+    <h1 style="text-align: center;" ;>Crown Pair Match - Clan VNClub</h1>
     <style>
         table {
             width: 300px;
@@ -79,12 +80,14 @@
 
 <body>
     <table id="interactiveTable">
-        <!-- Tạo bảng 5x5 -->
+        <!-- Tạo bảng 5x5 với hình ảnh mặc định -->
         <script>
+            const defaultImageSrc = 'default.png'; // Đường dẫn tới hình ảnh mặc định
+
             for (let i = 0; i < 5; i++) {
                 document.write('<tr>');
                 for (let j = 0; j < 5; j++) {
-                    document.write('<td></td>');
+                    document.write(`<td><img src="${defaultImageSrc}" alt="Default Image"></td>`);
                 }
                 document.write('</tr>');
             }
@@ -100,20 +103,25 @@
         <img src="matseo.png" alt="matseo" onclick="selectImage('matseo.png')">
         <img src="meo.png" alt="meo" onclick="selectImage('meo.png')">
         <img src="gau.png" alt="gau" onclick="selectImage('gau.png')">
-        <img src="wes.png" alt="wes" onclick="selectImage('wes.png')">
+        <img src="wes.png" alt="wes" onclick="selectImage('wes.png')"> <br>
+
         <img src="Na.png" alt="Na" onclick="selectImage('Na.png')">
         <img src="tsu.png" alt="tsu" onclick="selectImage('tsu.png')">
+        <img src="king.png" alt="king" onclick="selectImage('king.png')">
+        <img src="common.png" alt="common" onclick="selectImage('common.png')"> <br>
+
         <img src="robo.png" alt="robo" onclick="selectImage('robo.png')">
         <img src="cho.png" alt="cho" onclick="selectImage('cho.png')">
         <img src="ran.png" alt="ran" onclick="selectImage('ran.png')">
-        <img src="king.png" alt="king" onclick="selectImage('king.png')">
-        <img src="common.png" alt="common" onclick="selectImage('common.png')">
-        <img src="vuongmieng.png" alt="vuongmieng" onclick="selectImage('vuongmieng.png')">
-        <img src="cong1.png" alt="cong1" onclick="selectImage('cong1.png')">
+        <img src="default.png" alt="default" onclick="selectImage('default.png')"> <br>
+
         <img src="dong.png" alt="dong" onclick="selectImage('dong.png')">
         <img src="bac.png" alt="bac" onclick="selectImage('bac.png')">
         <img src="kimcuong.png" alt="kimcuong" onclick="selectImage('kimcuong.png')">
-        <img src="bachkim.png" alt="bachkim" onclick="selectImage('bachkim.png')">
+        <img src="bachkim.png" alt="bachkim" onclick="selectImage('bachkim.png')"> <br>
+
+        <img src="vuongmieng.png" alt="vuongmieng" onclick="selectImage('vuongmieng.png')">
+        <img src="cong1.png" alt="cong1" onclick="selectImage('cong1.png')">
         <img src="mauden.png" alt="den" onclick="selectImage('mauden.png')">
         <button onclick="closeImageSelection()">Cancel</button>
     </div>
@@ -149,7 +157,7 @@
 
         function resetTable() {
             cells.forEach(cell => {
-                cell.innerHTML = '';
+                cell.innerHTML = `<img src="${defaultImageSrc}" alt="Default Image">`;
                 cell.classList.remove('black');
             });
         }
